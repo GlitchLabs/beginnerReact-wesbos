@@ -6,7 +6,8 @@ class Inventory extends Component {
         return (
             <div className="intentory">
                 <h2>Inventory</h2>
-                <AddFishForm/>
+                <AddFishForm addFish =  {this.props.addFish}/>
+                <button onClick={this.props.loadSampleFishes}>Load Samples</button>
             </div>
         )
     }

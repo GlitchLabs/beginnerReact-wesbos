@@ -14,12 +14,22 @@ class App extends React.Component{
 
         componentDidMount(){
             console.log("mounted!!")
+            const localStorageRef = localStorage.getItem(this.props.match.params.storeId)
+            if(localStorageRef){
+                this.setState({order:JSON.parse(localStorageRef)})
+            }
+            console.log(localStorageRef)
             this.ref = base.syncState(`${this.props.match.params.storeId}/fishes`,
             {
                 context:this,
                 state:'fishes'
 
             });
+        }
+        componentDidUpdate(){
+            console.log("it updated!!")
+            localStorage.setItem(this.props.match.params.storeId, JSON.stringify(this.state.order))
+            console.log(this.state.order)
         }
         componentWillUnmount(){
             console.log("unmonted")
